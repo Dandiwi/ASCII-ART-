@@ -1,0 +1,40 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+
+/**
+ * Auto-generated code below aims at helping you parse
+ * the standard input according to the problem statement.
+ **/
+class Solution {
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        int W = in.nextInt();
+        in.nextLine();
+        int H = in.nextInt();
+        in.nextLine();
+        String T = in.nextLine().toUpperCase();
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ?";
+        ArrayList<String> ekran = new ArrayList();
+        for (int i = 0; i < H; i++) {
+            ekran.add(in.nextLine());
+        }
+        
+        ArrayList<Integer> indexes = new ArrayList();
+        for (char temp : T.toCharArray()) {
+            if (temp < 'A' || temp > 'Z') indexes.add(26);
+            else {
+                for (char letter : alphabet.toCharArray()) {
+                    if (temp == letter) indexes.add(alphabet.indexOf(letter));
+                }
+            }
+        }
+        for(int j = 0; j < H; j++) {
+			for(int k = 0; k < indexes.size(); k++) {
+				System.out.print(ekran.get(j).substring(indexes.get(k)*W, indexes.get(k)*W + W));
+			}
+			System.out.println();
+    }
+}
+}
